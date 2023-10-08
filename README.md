@@ -3,7 +3,7 @@
 <b><i>Este é o projeto desenvolvido durante a fase I do curso de pós-graduação em Arquitetura de Software da FIAP - Grupo 58.</i></b>
 
 ### Repositório:
-https://github.com/jotateo/fiap-postech/main
+https://github.com/jotateo/fiap-postech.git
 
 ## Membros do grupo:
 * Luciano Cordeiro Lessa - RM

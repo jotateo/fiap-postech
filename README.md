@@ -6,12 +6,12 @@
 https://github.com/jotateo/fiap-postech.git
 
 ## Membros do grupo:
-* Luciano Cordeiro Lessa - RM
-* Guilherme Luiz da Cunha - RM 
+* Luciano Cordeiro Lessa - RM352003
+* Guilherme Luiz da Cunha - RM351119
 * Jeronimo Teodoro - RM351760 
 
 ## Infraestrutura
-* Java 8+
+* Java 17+
 * Docker
 
 ### Prerequisites

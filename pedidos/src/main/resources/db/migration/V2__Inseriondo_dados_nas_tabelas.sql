@@ -1,0 +1,23 @@
+-- Inserir dados na tabela Clientes
+INSERT INTO Clientes (ID_CLIENTE, CPF, NOME, CRIADO_EM, ATUALIZADO_EM, DELETADO_EM)
+VALUES (1, '12345678900', 'Fulano de Tal', '2023-10-17 12:00:00', '2023-10-17 12:00:00', NULL);
+
+-- Inserir dados na tabela Enderecos
+INSERT INTO Enderecos (ID_ENDERECO, ID_CLIENTE, RUA, NUMERO, CIDADE, ESTADO, COMPLEMENTO, CRIADO_EM, ATUALIZADO_EM, DELETADO_EM)
+VALUES (1, 1, 'Avenida Reboucas', '123', 'Sao Paulo', 'SP', 'Complemento A', '2023-10-17 12:00:00', '2023-10-17 12:00:00', NULL);
+
+-- Inserir dados na tabela Telefones
+INSERT INTO Telefones (ID_TELEFONE, ID_CLIENTE, DDD, NUMERO, TIPO, CRIADO_EM, ATUALIZADO_EM, DELETADO_EM)
+VALUES (1, 1, '11', '999999999', 'Celular', '2023-10-17 12:00:00', '2023-10-17 12:00:00', NULL);
+
+-- Inserir dados na tabela Categorias
+INSERT INTO Categorias (ID_CATEGORIA, NOME, CRIADO_EM, ATUALIZADO_EM, DELETADO_EM)
+VALUES (1, 'HAMBURGUER', '2023-10-17 12:00:00', '2023-10-17 12:00:00', NULL);
+
+-- Inserir dados na tabela Produtos
+INSERT INTO Produtos (ID_PRODUTO, ID_CATEGORIA, NOME, DESCRICAO, FOTO, PRECO_ATUAL, CRIADO_EM, ATUALIZADO_EM, DELETADO_EM)
+VALUES (1, 1, 'X-BURGUER', 'Pão, hambúrguer 120gr, alface, tomate, picles e molho da casa', 'base64encodeddata', 19.99, '2023-10-17 12:00:00', '2023-10-17 12:00:00', NULL);
+
+-- Inserir dados na tabela Pedidos
+INSERT INTO Pedidos (ID_PEDIDO, ID_CLIENTE, ID_PRODUTO, QUANTIDADE, PRECO_VENDA, OBSERVACAO, DATA_PEDIDO, DATA_FINALIZADO)
+VALUES (1, 1, 1, 5, 19.99, 'Retirar o picles', '2023-10-17 12:00:00', '2023-10-18 14:30:00');

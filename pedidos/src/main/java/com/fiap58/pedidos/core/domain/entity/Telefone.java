@@ -6,24 +6,30 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.List;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "Telefones")
 @Getter
 @Setter
-public class Cliente {
+public class Telefone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CLIENTE")
-    private Long idCliente;
+    @Column(name = "ID_TELEFONE")
+    private Long idTelefone;
 
-    @Column(name = "CPF", nullable = false, unique = true, length = 11)
-    private String cpf;
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE")
+    private Cliente cliente;
 
-    @Column(name = "NOME", nullable = false, length = 50)
-    private String nome;
+    @Column(name = "DDD", nullable = false, length = 2)
+    private String ddd;
+
+    @Column(name = "NUMERO", nullable = false, length = 10)
+    private String numero;
+
+    @Column(name = "TIPO", length = 20)
+    private String tipo;
 
     @Column(name = "CRIADO_EM")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
@@ -37,9 +43,4 @@ public class Cliente {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant deletadoEm;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Endereco> enderecos;
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Telefone> telefones;
 }

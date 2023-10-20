@@ -6,24 +6,36 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
-import java.util.List;
 
 @Entity
-@Table(name = "Clientes")
+@Table(name = "Enderecos")
 @Getter
 @Setter
-public class Cliente {
+public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_CLIENTE")
-    private Long idCliente;
+    @Column(name = "ID_ENDERECO")
+    private Long idEndereco;
 
-    @Column(name = "CPF", nullable = false, unique = true, length = 11)
-    private String cpf;
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE")
+    private Cliente cliente;
 
-    @Column(name = "NOME", nullable = false, length = 50)
-    private String nome;
+    @Column(name = "RUA", nullable = false, length = 200)
+    private String rua;
+
+    @Column(name = "NUMERO", nullable = false, length = 10)
+    private String numero;
+
+    @Column(name = "CIDADE", nullable = false, length = 20)
+    private String cidade;
+
+    @Column(name = "ESTADO", nullable = false, length = 2)
+    private String estado;
+
+    @Column(name = "COMPLEMENTO", nullable = false, length = 20)
+    private String complemento;
 
     @Column(name = "CRIADO_EM")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
@@ -36,10 +48,4 @@ public class Cliente {
     @Column(name = "DELETADO_EM")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant deletadoEm;
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Endereco> enderecos;
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Telefone> telefones;
 }

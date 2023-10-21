@@ -25,7 +25,7 @@ public class PedidoController {
         return ResponseEntity.ok(pedidos);
     }
 
-    @PostMapping
+    @PostMapping("/checkout")
     @Transactional
     public ResponseEntity<DadosPedidosDto> incluirPedido(@RequestBody @Valid DadosPedidosEntrada dto){
         DadosPedidosDto dadosPedidosDto = service.inserirPedidoFila(dto);

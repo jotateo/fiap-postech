@@ -1,12 +1,16 @@
 package com.fiap58.pedidos.core.domain.services;
 
+import com.fiap58.pedidos.adapter.repository.ClienteRepository;
 import com.fiap58.pedidos.adapter.repository.PedidoProdutoRepository;
 import com.fiap58.pedidos.adapter.repository.PedidoRepository;
+import com.fiap58.pedidos.adapter.repository.ProdutoReposito;
 import com.fiap58.pedidos.core.domain.dto.DadosPedidosDto;
 import com.fiap58.pedidos.core.domain.dto.DadosPedidosEntrada;
+import com.fiap58.pedidos.core.domain.dto.ProdutoCarrinho;
+import com.fiap58.pedidos.core.domain.entity.Cliente;
 import com.fiap58.pedidos.core.domain.entity.Pedido;
 import com.fiap58.pedidos.core.domain.entity.PedidoProduto;
-import jakarta.persistence.Access;
+import com.fiap58.pedidos.core.domain.entity.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +27,31 @@ public class PedidoService {
     @Autowired
     private PedidoProdutoRepository pedidoProdutoRepository;
 
+    @Autowired
+    private ClienteRepository clienteRepository;
+
+    @Autowired
+    private ProdutoReposito produtoRepository;
+
     public DadosPedidosDto inserirPedidoFila(DadosPedidosEntrada dto) {
-        Pedido pedido = new Pedido(null, dto.cliente());
+        Cliente cliente = clienteRepository.findById(dto.clienteId()).orElse(null);
+        Pedido pedido = new Pedido(null, cliente);
         Pedido pedidoCriado = repository.save(pedido);
 
-        return null;
+        List<PedidoProduto> pedidosProdutos = new ArrayList<>();
+        for (ProdutoCarrinho carrinho : dto.carrinho()) {
+            Produto produto = produtoRepository.getReferenceById(carrinho.idProduto());
+            PedidoProduto pedidoProduto = new PedidoProduto(null, pedidoCriado,
+                    produto, carrinho.quantidade(), produto.getPrecoAtual(),
+                    carrinho.observacao());
+            pedidoProdutoRepository.save(pedidoProduto);
+            pedidosProdutos.add(pedidoProduto);
+        }
+
+        DadosPedidosDto retornoPedidoCriado = new DadosPedidosDto(pedido, pedidosProdutos);
+
+
+        return retornoPedidoCriado;
     }
 
     public List<DadosPedidosDto> listarPedidos(){

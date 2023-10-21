@@ -6,7 +6,7 @@ import java.util.List;
 
 public record DadosPedidosEntrada(
         List<ProdutoCarrinho> carrinho,
-        Cliente cliente
+        Long clienteId
 
 ) {
 }

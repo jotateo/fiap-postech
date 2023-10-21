@@ -4,6 +4,7 @@ import com.fiap58.pedidos.core.domain.entity.Cliente;
 import com.fiap58.pedidos.core.domain.entity.Pedido;
 import com.fiap58.pedidos.core.domain.entity.PedidoProduto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Getter
+@NoArgsConstructor
 public class DadosPedidosDto {
     private Date dataPedido;
     private List<ProdutoCarrinho> carrinho;

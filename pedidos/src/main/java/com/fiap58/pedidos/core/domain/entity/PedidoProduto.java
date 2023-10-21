@@ -1,7 +1,9 @@
 package com.fiap58.pedidos.core.domain.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -12,11 +14,13 @@ import java.util.List;
 @Table(name = "Pedido_Produto")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PedidoProduto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PEDIDO_PRODUTO")
-    private int id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "ID_PEDIDO")
@@ -34,6 +38,7 @@ public class PedidoProduto {
 
     @Column(name = "OBSERVACAO", length = 200)
     private String observacao;
+
 
 
 }

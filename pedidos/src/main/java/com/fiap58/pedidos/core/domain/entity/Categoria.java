@@ -1,12 +1,14 @@
 package com.fiap58.pedidos.core.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
 
+@JsonIgnoreProperties({"produtos"})
 @Entity
 @Table(name = "Categorias")
 @Getter
@@ -22,5 +24,10 @@ public class Categoria {
 
     @OneToMany(mappedBy = "categoria")
     private List<Produto> produtos;
+
+    public Categoria() {};
+    public Categoria(String nome){
+        this.nome = nome;
+    }
 
 }

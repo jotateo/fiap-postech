@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("pedidos")
 public class PedidoController {
 
     @Autowired
@@ -26,6 +26,7 @@ public class PedidoController {
     }
 
     @PostMapping("/checkout")
+
     @Transactional
     public ResponseEntity<DadosPedidosDto> incluirPedido(@RequestBody @Valid DadosPedidosEntrada dto){
         DadosPedidosDto dadosPedidosDto = service.inserirPedidoFila(dto);

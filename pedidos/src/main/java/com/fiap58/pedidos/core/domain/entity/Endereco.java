@@ -1,6 +1,7 @@
 package com.fiap58.pedidos.core.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_ENDERECO")
     private Long idEndereco;
-
+    @JsonIgnoreProperties("endereco")
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE")
     private Cliente cliente;

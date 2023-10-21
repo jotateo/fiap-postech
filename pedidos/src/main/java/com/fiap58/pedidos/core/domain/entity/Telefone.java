@@ -1,6 +1,7 @@
 package com.fiap58.pedidos.core.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ public class Telefone {
     @Column(name = "ID_TELEFONE")
     private Long idTelefone;
 
+    @JsonIgnoreProperties("telefone")
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE")
     private Cliente cliente;

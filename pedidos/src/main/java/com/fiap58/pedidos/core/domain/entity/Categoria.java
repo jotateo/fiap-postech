@@ -19,15 +19,15 @@ public class Categoria {
     @Column(name = "ID_CATEGORIA")
     private Long idCategoria;
 
-    @Column(name = "NOME", nullable = false, length = 50)
-    private String nome;
+    @Column(name = "NOME_CATEGORIA", nullable = false, length = 50)
+    private String nomeCategoria;
 
     @OneToMany(mappedBy = "categoria")
     private List<Produto> produtos;
 
     public Categoria() {};
     public Categoria(String nome){
-        this.nome = nome;
+        this.nomeCategoria = nome;
     }
 
 }

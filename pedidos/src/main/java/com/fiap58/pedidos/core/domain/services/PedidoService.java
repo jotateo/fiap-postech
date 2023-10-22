@@ -1,9 +1,6 @@
 package com.fiap58.pedidos.core.domain.services;
 
-import com.fiap58.pedidos.adapter.repository.ClienteRepository;
-import com.fiap58.pedidos.adapter.repository.PedidoProdutoRepository;
-import com.fiap58.pedidos.adapter.repository.PedidoRepository;
-import com.fiap58.pedidos.adapter.repository.ProdutoReposito;
+import com.fiap58.pedidos.adapter.repository.*;
 import com.fiap58.pedidos.core.domain.dto.DadosPedidosDto;
 import com.fiap58.pedidos.core.domain.dto.DadosPedidosEntrada;
 import com.fiap58.pedidos.core.domain.dto.ProdutoCarrinho;
@@ -31,7 +28,7 @@ public class PedidoService {
     private ClienteRepository clienteRepository;
 
     @Autowired
-    private ProdutoReposito produtoRepository;
+    private ProdutoRepository produtoRepository;
 
     public DadosPedidosDto inserirPedidoFila(DadosPedidosEntrada dto) {
         Cliente cliente = clienteRepository.findById(dto.clienteId()).orElse(null);

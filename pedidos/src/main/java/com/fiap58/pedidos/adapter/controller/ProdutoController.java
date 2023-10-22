@@ -24,6 +24,11 @@ public class ProdutoController {
         return service.listarProdutos();
     }
 
+    @GetMapping("/buscaPorCat/{nomeCategoria}")
+    public List<Produto> listarProdutosPorCategoria(@PathVariable String nomeCategoria) {
+        return service.buscarProdutoPorCategoria(nomeCategoria);
+    }
+
     @PostMapping("/inserir")
     @Transactional
     public ResponseEntity<DadosProdutoDto> incluirProduto(@RequestBody @Valid DadosProdutoDto dto) {
@@ -32,7 +37,7 @@ public class ProdutoController {
         return ResponseEntity.ok(dadosProdutoDto);
     }
 
-    @PostMapping("/atualizar/{id}")
+    @PatchMapping("/{id}")
     @Transactional
     public void atualizarProduto(@PathVariable Long id, @RequestBody @Valid DadosProdutoDto dto) {
 
@@ -40,7 +45,7 @@ public class ProdutoController {
 
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @Transactional
     public void deleteProduto(@PathVariable Long id) {
 

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.fiap58.pedidos.adapter.specifications.ProdutoSpecification.temCategoria;
+
 @Service
 public class ProdutoService {
 
@@ -46,5 +48,9 @@ public class ProdutoService {
         repository.save(produto);
 
         return produto;
+    }
+
+    public List<Produto> buscarProdutoPorCategoria(String nomeCategoria) {
+        return repository.findAll(temCategoria(nomeCategoria));
     }
 }

@@ -2,17 +2,23 @@ package com.fiap58.pedidos.core.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fiap58.pedidos.core.domain.dto.DadosClienteDto;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
 import java.util.List;
 
+
 @Entity
 @Table(name = "Clientes")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cliente {
 
     @Id
@@ -45,4 +51,15 @@ public class Cliente {
     @JsonIgnoreProperties("cliente")
     @OneToMany(mappedBy = "cliente")
     private List<Telefone> telefones;
+
+    public Cliente(DadosClienteDto dados) {
+        this.idCliente = dados.idCliente();
+        this.cpf = dados.cpf();
+        this.nome = dados.nome();
+        this.criadoEm = dados.criadoEm();
+        this.atualizadoEm = dados.atualizadoEm();
+        this.deletadoEm = dados.deletadoEm();
+        this.enderecos = dados.enderecos();
+        this.telefones = dados.telefones();
+    }
 }

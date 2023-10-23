@@ -2,8 +2,11 @@ package com.fiap58.pedidos.core.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fiap58.pedidos.core.domain.dto.DadosEndecoDto;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
@@ -12,6 +15,8 @@ import java.time.Instant;
 @Table(name = "Enderecos")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Endereco {
 
     @Id
@@ -49,4 +54,17 @@ public class Endereco {
     @Column(name = "DELETADO_EM")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant deletadoEm;
+
+    public Endereco(DadosEndecoDto dados) {
+        this.idEndereco = dados.idEndereco();
+        this.cliente = dados.cliente();
+        this.rua = dados.rua();
+        this.numero = dados.numero();
+        this.cidade = dados.cidade();
+        this.estado = dados.estado();
+        this.complemento = dados.complemento();
+        this.criadoEm = dados.criadoEm();
+        this.atualizadoEm = dados.atualizadoEm();
+        this.deletadoEm = dados.deletadoEm();
+    }
 }

@@ -21,7 +21,7 @@ public class ClienteService {
         return repository.save(cliente);
     }
     public Cliente buscarClientePorCpf(String cpf) {
-        return repository.buscarPorCpf(cpf);
+        return repository.findByCpf(cpf);
     }
     public Cliente buscarClientePorId(Long id) {
         return repository.findById(id).orElse(null);

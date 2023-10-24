@@ -20,11 +20,11 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
-//    @PostMapping
-//    public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
-//        Cliente novoCliente = service.cadastrarCliente(cliente);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
-//    }
+    @PostMapping("/inserir")
+    public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
+        Cliente novoCliente = service.cadastrarCliente(cliente);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
+    }
 
     @GetMapping("/list")
     public ResponseEntity<List<DadosClienteDto>> listarClientes(){
@@ -32,14 +32,24 @@ public class ClienteController {
         return ResponseEntity.ok(clientes);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Cliente> buscarCliente(@PathVariable Long id) {
-//        Cliente cliente = service.buscarClientePorId(id);
-//        if (cliente != null){
-//            return ResponseEntity.ok(cliente);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> buscarCliente(@PathVariable Long id) {
+        Cliente cliente = service.buscarClientePorId(id);
+        if (cliente != null){
+            return ResponseEntity.ok(cliente);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<Cliente> buscarClientePorCpf(@PathVariable String cpf) {
+        Cliente cliente = service.buscarClientePorCpf(cpf);
+        if (cliente != null) {
+            return ResponseEntity.ok(cliente);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }

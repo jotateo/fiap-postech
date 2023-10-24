@@ -45,4 +45,5 @@ public class Cliente {
     @JsonIgnoreProperties("cliente")
     @OneToMany(mappedBy = "cliente")
     private List<Telefone> telefones;
+
 }

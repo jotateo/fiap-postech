@@ -1,4 +1,10 @@
 package com.fiap58.pedidos.core.domain.dto;
 
-public record DadosClienteDto (String cpf, String nome){
+import com.fiap58.pedidos.core.domain.entity.Cliente;
+
+public record DadosClienteDto (Long idCliente, String cpf, String nome){
+
+    public DadosClienteDto(Cliente cliente) {
+        this(cliente.getIdCliente(), cliente.getCpf(), cliente.getNome());
+    }
 }

@@ -22,6 +22,10 @@ public class ClienteController {
 
     @PostMapping("/inserir")
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
+        Cliente checkCliente = service.buscarClientePorCpf(cliente.getCpf());
+        if (checkCliente != null) {
+            return ResponseEntity.status(HttpStatus.FOUND).body(checkCliente);
+        }
         Cliente novoCliente = service.cadastrarCliente(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
     }

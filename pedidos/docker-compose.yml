@@ -8,7 +8,10 @@ services:
       - pedidos-net
     environment:
       MYSQL_DATABASE: food_58
-      MYSQL_ROOT_PASSWORD: Fiaposo@19
+      MYSQL_ROOT_PASSWORD: /run/secrets/db_pass
+    secrets:
+      - db_pass
+
   pedidos_service:
     build: .
     restart: always
@@ -21,9 +24,18 @@ services:
     environment:
       MYSQL_HOST: mysqldb
       MYSQL_USER: root
-      MYSQL_PASSWORD: Fiaposo@19
+      MYSQL_PASSWORD: /run/secrets/db_pass
       MYSQL_DB: food_58
+    secrets:
+      - db_pass
+    working_dir: /usr/src/pedidos
+    entrypoint: ["/bin/bash"]
+    command: -c './app-startup.sh'
 
 networks:
   pedidos-net:
     driver: bridge
+
+secrets:
+  db_pass:
+    file: ./db_pass.txt

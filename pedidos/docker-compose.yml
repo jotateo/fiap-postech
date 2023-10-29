@@ -29,8 +29,7 @@ services:
     secrets:
       - db_pass
     working_dir: /usr/src/pedidos
-    entrypoint: ["/bin/bash"]
-    command: -c './app-startup.sh'
+    command: /usr/src/pedidos/app-startup.sh
 
 networks:
   pedidos-net:
@@ -38,4 +37,4 @@ networks:
 
 secrets:
   db_pass:
-    file: ./db_pass.txt
+    file: db_pass.txt

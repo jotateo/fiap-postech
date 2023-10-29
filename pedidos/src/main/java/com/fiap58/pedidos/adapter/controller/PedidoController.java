@@ -4,6 +4,7 @@ import com.fiap58.pedidos.core.domain.dto.DadosPedidosDto;
 import com.fiap58.pedidos.core.domain.dto.DadosPedidosEntrada;
 import com.fiap58.pedidos.core.domain.entity.Pedido;
 import com.fiap58.pedidos.core.domain.services.PedidoService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,14 @@ public class PedidoController {
     @Autowired
     private PedidoService service;
 
+    @Operation(description = "Lista todos os pedidos")
     @GetMapping
     public ResponseEntity<List<DadosPedidosDto>> listarPedidos(){
         List<DadosPedidosDto> pedidos = service.listarPedidos();
         return ResponseEntity.ok(pedidos);
     }
 
+    @Operation(description = "Inicia Checkout")
     @PostMapping("/checkout")
 
     @Transactional

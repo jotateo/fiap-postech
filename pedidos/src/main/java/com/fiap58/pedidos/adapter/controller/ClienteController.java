@@ -4,6 +4,7 @@ import com.fiap58.pedidos.core.domain.dto.DadosClienteDto;
 import com.fiap58.pedidos.core.domain.dto.DadosProdutoDto;
 import com.fiap58.pedidos.core.domain.entity.Cliente;
 import com.fiap58.pedidos.core.domain.services.ClienteService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
+    @Operation(description = "Faz a inserção de um novo cliente")
     @PostMapping("/inserir")
     public ResponseEntity<Cliente> cadastrarCliente(@RequestBody Cliente cliente) {
         Cliente checkCliente = service.buscarClientePorCpf(cliente.getCpf());
@@ -30,12 +32,14 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
     }
 
+    @Operation(description = "Lista todos os clientes")
     @GetMapping("/list")
     public ResponseEntity<List<DadosClienteDto>> listarClientes(){
         List<DadosClienteDto> clientes = service.listarClientes();
         return ResponseEntity.ok(clientes);
     }
 
+    @Operation(description = "Busca um cliente por Id")
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> buscarCliente(@PathVariable Long id) {
         Cliente cliente = service.buscarClientePorId(id);
@@ -46,6 +50,7 @@ public class ClienteController {
         }
     }
 
+    @Operation(description = "Busca um cliente por CPF")
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<Cliente> buscarClientePorCpf(@PathVariable String cpf) {
         Cliente cliente = service.buscarClientePorCpf(cpf);

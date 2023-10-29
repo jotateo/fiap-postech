@@ -3,4 +3,3 @@
 target
 docker-compose.yml
 Dockerfile
-db_pass.txt

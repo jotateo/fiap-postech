@@ -14,10 +14,6 @@ https://github.com/jotateo/fiap-postech.git
 * Java 17+
 * Docker
 
-### Prerequisites
-
-### Setup
-
 ## Entregavéis
 ### Entregável 1 – DDD
 A modelagem dos fluxos de pedido e pagamento, e preparo e entrega foram realizadas utilizando Event Storming. Disponibilizado no Miro:
